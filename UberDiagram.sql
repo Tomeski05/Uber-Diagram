@@ -4,11 +4,12 @@ Create table Driver (
 	LastName NVarchar(50) NOT NULL,
 	Gender Varchar(10) NOT NULL,
 	History Varchar(200),
-	Picture Varbinary(Max)
-	--Foreign Key (Id) References Route(Id)
+	Picture Varbinary(Max),
+	DrivingLicenseNumber Varchar(100),
+	TotalRides Integer NOT NULL
 	);
 
-Create table Rider (
+Create table Customer (
 	Id Integer Primary Key,
 	UserName NVarchar(50) NOT NULL,
 	Gender Varchar(10),
@@ -23,7 +24,8 @@ Create table Route (
 	TripStartTime Integer NOT NULL,
 	TripEndTime Integer NOT NULL,
 	Distance Integer NOT NULL,
-	Foreign Key (Id) References Driver(Id)
+	Foreign Key (Id) References Driver(Id),
+	--Canceled Boolean NOT NULL
 	);
 
 Create table Payments (
@@ -34,7 +36,7 @@ Create table Payments (
 	Amount Integer NOT NULL
 	);
 
-Create table RiderReview (
+Create table CustomerReview (
 	ReviewId Integer Primary Key,
 	UserName NVarchar(20) NOT NULL,
 	UserRating NVarchar(20) NOT NULL,
@@ -42,8 +44,9 @@ Create table RiderReview (
 	);
 
 Create table DriverReview (
-	ReviewId Integer PRimary Key,
+	ReviewId Integer Primary Key,
 	DriverName NVarchar(50) NOT NULL,
 	DriverRating Integer NOT NULL,
-	DriverReview NVarchar(50) NOT NULL
+	DriverReview NVarchar(50) NOT NULL,
+	Foreign Key (ReviewId) References Driver(Id)
 	);
