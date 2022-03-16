@@ -20,11 +20,11 @@ Create table Customer (
 	);
 
 Create table Route (
-	Id Integer Primary Key,
+	RouteId Integer Primary Key,
 	TripStartTime Integer NOT NULL,
 	TripEndTime Integer NOT NULL,
 	Distance Integer NOT NULL,
-	Foreign Key (Id) References Driver(Id),
+	Foreign Key (RouteId) References Driver(Id),
 	--Canceled Boolean NOT NULL
 	);
 
@@ -33,14 +33,16 @@ Create table Payments (
 	Cash Integer NOT NULL,
 	Card Integer NOT NULL,
 	PayPal Integer NOT NULL,
-	Amount Integer NOT NULL
+	Amount Integer NOT NULL,
+	--Foreign Key (Id) References Customer(Id)
 	);
 
 Create table CustomerReview (
 	ReviewId Integer Primary Key,
 	UserName NVarchar(20) NOT NULL,
 	UserRating NVarchar(20) NOT NULL,
-	UserReview Nvarchar(100)
+	UserReview Nvarchar(100),
+	Foreign Key (ReviewId) References Customer(Id)
 	);
 
 Create table DriverReview (
