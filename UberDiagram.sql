@@ -40,3 +40,10 @@ Create table RiderReview (
 	UserRating NVarchar(20) NOT NULL,
 	UserReview Nvarchar(100)
 	);
+
+Create table DriverReview (
+	ReviewId Integer PRimary Key,
+	DriverName NVarchar(50) NOT NULL,
+	DriverRating Integer NOT NULL,
+	DriverReview NVarchar(50) NOT NULL
+	);
