@@ -25,18 +25,18 @@ Create table Route (
 	TripEndTime Integer NOT NULL,
 	Distance Integer NOT NULL,
 	Foreign Key (RouteId) References Driver(Id),
-	--Canceled Boolean NOT NULL
+	Canceled Bit NOT NULL
 	);
 
 Create table Payments (
 	Id Integer Primary Key,
-	PaymentsId Integer,
+	UserId Integer,
 	Cash Integer NOT NULL,
 	Card Integer NOT NULL,
 	PayPal Integer NOT NULL,
 	Amount Integer NOT NULL,
-	--Foreign Key (PaymentsId) References Customer(Id),
-	Foreign Key (PaymentsId) References Driver(Id)
+	Foreign Key (UserId) References Customer(Id),
+	Foreign Key (Id) References Driver(Id)
 	); 
 
 Create table CustomerReview (
