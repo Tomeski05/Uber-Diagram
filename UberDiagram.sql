@@ -30,15 +30,18 @@ Create table Route (
 
 Create table Payments (
 	Id Integer Primary Key,
+	PaymentsId Integer,
 	Cash Integer NOT NULL,
 	Card Integer NOT NULL,
 	PayPal Integer NOT NULL,
 	Amount Integer NOT NULL,
-	--Foreign Key (Id) References Customer(Id)
-	);
+	--Foreign Key (PaymentsId) References Customer(Id),
+	Foreign Key (PaymentsId) References Driver(Id)
+	); 
 
 Create table CustomerReview (
-	ReviewId Integer Primary Key,
+	Id Integer Primary Key,
+	ReviewId Integer,
 	UserName NVarchar(20) NOT NULL,
 	UserRating NVarchar(20) NOT NULL,
 	UserReview Nvarchar(100),
