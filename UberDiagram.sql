@@ -25,7 +25,7 @@ Create table Route (
 	TripEndTime Integer NOT NULL,
 	Distance Integer NOT NULL,
 	Foreign Key (RouteId) References Driver(Id),
-	Canceled Bit NOT NULL
+	--Canceled Boolean NOT NULL
 	);
 
 Create table Payments (
