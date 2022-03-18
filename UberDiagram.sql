@@ -27,7 +27,7 @@ Create table Route (
 	Distance Integer NOT NULL,
 	Foreign Key (Id) References Driver(Id),
 	Foreign KEy (RouteId) References Customer(Id),
-	Canceled Bit NOT NULL
+	Canceled Bit NOT NULL 
 	);
 
 Create table Payments (
@@ -56,4 +56,15 @@ Create table DriverReview (
 	DriverRating Integer NOT NULL,
 	DriverReview NVarchar(50) NOT NULL,
 	Foreign Key (ReviewId) References Driver(Id)
+	);
+
+Create table Location (
+	Id Integer Primary key,
+	LocationName Integer,
+	PostalCode Varchar(20)
+	);
+
+Create table Station (
+	Id Integer Primary key,
+	LocationId Integer
 	);
