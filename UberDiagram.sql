@@ -1,5 +1,6 @@
 Create table dbo.Driver (
 	Id Integer Primary Key,
+	DriverId Integer NOT NULL,
 	FirstName NVarchar(50) NOT NULL,
 	LastName NVarchar(50) NOT NULL,
 	Gender Varchar(10) NOT NULL,
@@ -7,38 +8,41 @@ Create table dbo.Driver (
 	Picture Varbinary(Max),
 	DrivingLicenseNumber Varchar(100),
 	TotalRides Integer NOT NULL
+	Foreign Key (DriverId) References Route(Id)
 	);
 
 Create table dbo.Customer (
 	Id Integer Primary Key,
+	CustomerId Integer NOT NULL,
 	UserName NVarchar(50) NOT NULL,
 	Gender Varchar(10),
 	Country Char(20),
 	Phone Integer NOT NULL,
 	Password Varchar(50) NOT NULL,
 	History Varchar(20)
+	Foreign Key (CustomerId) References Route(Id)
 	);
 
 Create table dbo.Route (
 	Id Integer Primary Key,
 	CustomerId Integer NOT NULL,
 	DriverId Integer NOT NULL,
+	PaymentsId Integer NOT NULL,
+	LocationId Integer NOT NULL,
 	LocationStartId Integer NOT NULL,
 	LocationEndId Integer NOT NULL,
 	Distance Integer NOT NULL,
-	Foreign Key (DriverId) References Driver(Id),
-	Foreign KEy (CustomerId) References Customer(Id),
-	Canceled Bit NOT NULL 
+	Canceled Bit NOT NULL,
+	DriverRating Integer NOT NULL,
+	CustomerRAting Integer NOT NULL,
+	--Foreign Key (DriverId) References Driver(DriverId)
 	);
 
 Create table dbo.Payments (
 	Id Integer Primary Key,
-	CustomerId Integer NOT NULL,
-	DriverId Integer NOT NULL,
-	PaymentType NVarchar(50) NOT NULL,
-	Amount Integer NOT NULL,
-	Foreign Key (CustomerId) References Customer(Id),
-	Foreign Key (DriverId) References Driver(Id)
+	PaymentTypeId NVarchar(50) NOT NULL,
+	AmountId Integer NOT NULL,
+	Foreign Key (AmountId) References Route(Id)
 	);
 
 Create table dbo.PaymentType (
@@ -59,19 +63,18 @@ Create table dbo.CustomerReview (
 	);
 
 Create table dbo.DriverBookmark (
-	ReviewId Integer Primary Key,
+	BookmarkId Integer Primary Key,
 	DriverId Integer NOT NULL,
-	DriverName NVarchar(50) NOT NULL,
-	DriverRating Integer NOT NULL,
-	DriverReview NVarchar(50) NOT NULL,
+	BookmarkLocation NVarchar(30) NOT NULL,
 	Foreign Key (DriverId) References Driver(Id)
 	);
 
 Create table dbo.Location (
 	Id Integer Primary key,
-	CityLocation NVarchar(100) NOT NULL,
+	LocationId Integer NOT NULL,
+	RouteOfCities NVarchar(100) NOT NULL,
 	PostalCode Integer NOT NULL,
-
+	Foreign Key (LocationId) References Route(Id)
 	);
 
 Create table dbo.Station (
