@@ -80,4 +80,5 @@ Create table dbo.Location (
 Create table dbo.Station (
 	Id Integer Primary key,
 	LocationId Integer NOT NULL
+	Foreign Key (LocationId) References Location(Id)
 	);
