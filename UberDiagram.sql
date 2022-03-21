@@ -1,4 +1,4 @@
-Create table Driver (
+Create table dbo.Driver (
 	Id Integer Primary Key,
 	FirstName NVarchar(50) NOT NULL,
 	LastName NVarchar(50) NOT NULL,
@@ -9,7 +9,7 @@ Create table Driver (
 	TotalRides Integer NOT NULL
 	);
 
-Create table Customer (
+Create table dbo.Customer (
 	Id Integer Primary Key,
 	UserName NVarchar(50) NOT NULL,
 	Gender Varchar(10),
@@ -19,52 +19,61 @@ Create table Customer (
 	History Varchar(20)
 	);
 
-Create table Route (
+Create table dbo.Route (
 	Id Integer Primary Key,
-	RouteId Integer NOT NULL,
-	TripStartTime Integer NOT NULL,
-	TripEndTime Integer NOT NULL,
+	CustomerId Integer NOT NULL,
+	DriverId Integer NOT NULL,
+	LocationStartId Integer NOT NULL,
+	LocationEndTime Integer NOT NULL,
 	Distance Integer NOT NULL,
-	Foreign Key (Id) References Driver(Id),
-	Foreign KEy (RouteId) References Customer(Id),
+	Foreign Key (DriverId) References Driver(Id),
+	Foreign KEy (CustomerId) References Customer(Id),
 	Canceled Bit NOT NULL 
 	);
 
-Create table Payments (
+Create table dbo.Payments (
 	Id Integer Primary Key,
-	CustomerId Integer,
+	CustomerId Integer NOT NULL,
+	DriverId Integer NOT NULL,
+	PaymentType NVarchar(50) NOT NULL,
+	Amount Integer NOT NULL,
+	Foreign Key (CustomerId) References Customer(Id),
+	Foreign Key (DriverId) References Driver(Id)
+	);
+
+Create table dbo.PaymentType (
+	Id Integer Primary Key,
+	PaymentsId Integer NOT NULL,
 	Cash Integer NOT NULL,
 	Card Integer NOT NULL,
 	PayPal Integer NOT NULL,
-	Amount Integer NOT NULL,
-	Foreign Key (CustomerId) References Customer(Id),
-	Foreign Key (Id) References Driver(Id)
-	); 
+	Foreign Key (PaymentsId) References Payments(Id)
+	);
 
-Create table CustomerReview (
+Create table dbo.CustomerReview (
 	Id Integer Primary Key,
 	ReviewId Integer,
-	UserName NVarchar(20) NOT NULL,
 	UserRating NVarchar(20) NOT NULL,
 	UserReview Nvarchar(100),
 	Foreign Key (ReviewId) References Customer(Id)
 	);
 
-Create table DriverReview (
+Create table dbo.DriverReview (
 	ReviewId Integer Primary Key,
+	DriverId Integer NOT NULL,
 	DriverName NVarchar(50) NOT NULL,
 	DriverRating Integer NOT NULL,
 	DriverReview NVarchar(50) NOT NULL,
-	Foreign Key (ReviewId) References Driver(Id)
+	Foreign Key (DriverId) References Driver(Id)
 	);
 
-Create table Location (
+Create table dbo.Location (
 	Id Integer Primary key,
-	LocationName Integer,
+	CityLocation Integer,
 	PostalCode Varchar(20)
 	);
 
-Create table Station (
+Create table dbo.Station (
 	Id Integer Primary key,
 	LocationId Integer
 	);
