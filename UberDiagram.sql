@@ -24,7 +24,7 @@ Create table dbo.Route (
 	CustomerId Integer NOT NULL,
 	DriverId Integer NOT NULL,
 	LocationStartId Integer NOT NULL,
-	LocationEndTime Integer NOT NULL,
+	LocationEndId Integer NOT NULL,
 	Distance Integer NOT NULL,
 	Foreign Key (DriverId) References Driver(Id),
 	Foreign KEy (CustomerId) References Customer(Id),
@@ -69,11 +69,12 @@ Create table dbo.DriverReview (
 
 Create table dbo.Location (
 	Id Integer Primary key,
-	CityLocation Integer,
-	PostalCode Varchar(20)
+	CityLocation NVarchar(50) NOT NULL,
+	PostalCode Varchar(20) NOT NULL,
+
 	);
 
 Create table dbo.Station (
 	Id Integer Primary key,
-	LocationId Integer
+	LocationId Integer NOT NULL
 	);
