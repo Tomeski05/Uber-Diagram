@@ -53,12 +53,12 @@ Create table dbo.PaymentType (
 Create table dbo.CustomerReview (
 	Id Integer Primary Key,
 	ReviewId Integer,
-	UserRating NVarchar(20) NOT NULL,
-	UserReview Nvarchar(100),
+	CustomerRating NVarchar(20) NOT NULL,
+	CustomerReview Nvarchar(100),
 	Foreign Key (ReviewId) References Customer(Id)
 	);
 
-Create table dbo.DriverReview (
+Create table dbo.DriverBookmark (
 	ReviewId Integer Primary Key,
 	DriverId Integer NOT NULL,
 	DriverName NVarchar(50) NOT NULL,
@@ -69,8 +69,8 @@ Create table dbo.DriverReview (
 
 Create table dbo.Location (
 	Id Integer Primary key,
-	CityLocation NVarchar(50) NOT NULL,
-	PostalCode Varchar(20) NOT NULL,
+	CityLocation NVarchar(100) NOT NULL,
+	PostalCode Integer NOT NULL,
 
 	);
 
