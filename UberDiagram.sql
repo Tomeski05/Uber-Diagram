@@ -55,11 +55,11 @@ Create table dbo.PaymentType (
 	);
 
 Create table dbo.CustomerReview (
-	Id Integer Primary Key,
+	CustomerId Integer Primary Key,
 	ReviewId Integer,
 	CustomerRating NVarchar(20) NOT NULL,
 	CustomerReview Nvarchar(100),
-	Foreign Key (ReviewId) References Customer(Id)
+	Foreign Key (CustomerId) References Customer(CustomerId)
 	);
 
 Create table dbo.DriverBookmark (
@@ -73,6 +73,8 @@ Create table dbo.Location (
 	Id Integer Primary key,
 	LocationId Integer NOT NULL,
 	RouteOfCities NVarchar(100) NOT NULL,
+	Latitude Integer NOT NULL,
+	Longitude Integer NOT NULL,
 	PostalCode Integer NOT NULL,
 	Foreign Key (LocationId) References Route(Id)
 	);
@@ -81,4 +83,11 @@ Create table dbo.Station (
 	Id Integer Primary key,
 	LocationId Integer NOT NULL
 	Foreign Key (LocationId) References Location(Id)
+	);
+
+Create table dbo.UberStatus (
+	Id Integer Primary key,
+	Free Bit NOT NULL,
+	Busy Bit NOT NULL,
+	OffDuty Bit NOT NULL
 	);
